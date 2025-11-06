@@ -12,7 +12,7 @@
 
 **Order**
 
-**Mail**
+**Notification**
 
 
 # Technologies
