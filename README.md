@@ -1,5 +1,6 @@
 # SpringBoot-Ecommerce
-<img width="749" height="491" alt="JavaEcommerce" src="https://github.com/user-attachments/assets/b7a9cb27-c862-4122-8c36-f47842727984" />
+<img width="749" height="491" alt="JavaEcommerce" src="https://github.com/user-attachments/assets/e7d9160c-2fa3-4a63-9876-a73ef1fcda56" />
+
 
 
 
@@ -48,4 +49,5 @@ This is an e-commerce application developed using the **Spring Boot** in a **mic
 🛢️ Databases
 - 🐘 PostgreSQL – Relational database for structured data (Customer, Product, Order)
 
-
+🛠️ Build & Dependency Management
+- 📦 Maven – Project build and dependency management
