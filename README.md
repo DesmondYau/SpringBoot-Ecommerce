@@ -28,7 +28,7 @@ This is an e-commerce application developed using Spring Boot and Java in micros
 - Enables dynamic **service registration** and lookup using **Spring Cloud Netflix Eureka**. Ensures services can find and communicate with each other without hardcoded URLs.
 
 **🗂️ Config Server**
-- Centralizes configuration for all services using Spring Cloud Config Server.
+- Centralizes configuration for all services using **Spring Cloud Config Server**.
 
 # Technologies
 
