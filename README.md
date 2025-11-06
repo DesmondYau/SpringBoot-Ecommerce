@@ -10,10 +10,11 @@ This is an e-commerce application developed using Spring Boot and Java in micros
 **👤 Customer Service**
 
 **📦 Product Service**
+- Handles product creation, lookup, and inventory updates. Validates stock and processes purchases with transactional integrity.
 
 **🧾 Order Service**
 - Processes order creation and order history. Perform **synchronous communication** with Customer and Product services using Spring RestClient to validate and fulfill orders.
-- Acts as a **Kafka producer**, publishing order events to a Kafka topic for asynchronous processing by downstream consumers such as the Notification Service
+- Acts as a **Kafka producer**, publishing order events to a Kafka topic for asynchronous processing by downstream Notification Service
 
 **📣 Notification Service**
 - Listens for order-related events as a **Kafka consumer**, enabling asynchronous communication with the Order Service
@@ -23,7 +24,7 @@ This is an e-commerce application developed using Spring Boot and Java in micros
 - Serves as the **unified entry point** to the system. Routes incoming requests to appropriate services
 
 **🧭 Discovery Service**
-- Enables dynamic **service registration** and lookup using Spring Cloud Netflix Eureka. Ensures services can find and communicate with each other without hardcoded URLs.
+- Enables dynamic **service registration** and lookup using **Spring Cloud Netflix Eureka**. Ensures services can find and communicate with each other without hardcoded URLs.
 
 **🗂️ Config Server**
 
