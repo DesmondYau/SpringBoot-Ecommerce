@@ -12,9 +12,11 @@ This is an e-commerce application developed using Spring Boot and Java in micros
 **📦 Product Service**
 
 **🧾 Order Service**
+- Processes order creation and order history. Coordinates with Customer and Product services using Spring RestClient to validate and fulfill orders.
+- Acts as a Kafka producer, publishing order events to a Kafka topic for asynchronous processing by downstream consumers such as the Notification Service
 
 **📣 Notification Service**
-- Acts as a Kafka producer, publishing order events to a Kafka topic for asynchronous processing by downstream consumers such as the Notification Service
+
 
 **🚪 Gateway Service**
 - Serves as the unified entry point to the system. Routes incoming requests to appropriate services
