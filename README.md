@@ -32,9 +32,13 @@ This is an e-commerce application developed using the **Spring Boot** in a **mic
 
 # Technologies
 
-**🚀 Spring Boot**
-- Spring Cloud Gateway
-- Spring RestClient
+🧱 Core Frameworks & Libraries
+- 🚀 Spring Boot – Base framework for building microservices
+- 🚪 Spring Cloud Gateway – API gateway for routing and filtering
+- 🔗 Spring RestClient – HTTP client for synchronous inter-service communication
+- 🧭 Spring Cloud Netflix Eureka – Service discovery and registration
+- 🗂️ Spring Cloud Config Server – Centralized configuration management
+- 📧 JavaMailSender – Email delivery for notifications
 
 **🔄 Kafka**
 
