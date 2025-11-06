@@ -14,7 +14,7 @@ This is an e-commerce application developed using the **Spring Boot** in a **mic
 - Handles product creation, lookup, and inventory updates. Validates stock and processes purchases with transactional integrity.
 
 **🧾 Order Service**
-- Processes order creation and history. Performs **synchronous communication** with Customer and Product services using Spring RestClient to validate and fulfill orders
+- Processes order creation and history. Performs **synchronous communication** with Customer and Product services using **Spring RestClient** to validate and fulfill orders
 - Acts as a **Kafka producer**, publishing order events to a Kafka topic for asynchronous processing by downstream consumers such as the Notification Service.
 
 **📣 Notification Service**
