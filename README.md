@@ -15,7 +15,7 @@ This is an e-commerce application developed using the **Spring Boot** in a **mic
 
 **🧾 Order Service**
 - Processes order creation and history. Performs **synchronous communication** with Customer and Product services using **Spring RestClient** to validate and fulfill orders
-- Acts as a **Kafka producer**, publishing order events to a Kafka topic for asynchronous processing by downstream consumers such as the Notification Service.
+- Acts as a **Kafka producer**, publishing order events to a Kafka topic for **asynchronous processing** by downstream consumers such as the Notification Service.
 
 **📣 Notification Service**
 - Listens for order-related events as a **Kafka consumer**, enabling asynchronous communication with the Order Service.
