@@ -9,18 +9,20 @@ This is an e-commerce application developed using Spring Boot and Java in micros
 
 **👤 Customer Service**
 
-**Product Service**
+**📦 Product Service**
 
-**Order Service**
+**🧾 Order Service**
 
-**Notification Service**
+**📣 Notification Service**
+- Acts as a Kafka producer, publishing order events to a Kafka topic for asynchronous processing by downstream consumers such as the Notification Service
 
-**Gateway Service**
+**🚪 Gateway Service**
+- Serves as the unified entry point to the system. Routes incoming requests to appropriate services
 
-**Discovery Service**
+**🧭 Discovery Service**
 - Enables dynamic service registration and lookup using Spring Cloud Netflix Eureka. Ensures services can find and communicate with each other without hardcoded URLs.
 
-**Config Server**
+**🗂️ Config Server**
 
 
 # Technologies
