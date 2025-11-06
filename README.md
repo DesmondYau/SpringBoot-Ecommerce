@@ -15,6 +15,8 @@ This is an e-commerce application developed using Spring Boot and Java in micros
 
 **Notification Service**
 
+**Gateway Service**
+
 **Discovery Service**
 
 **Config Server**
@@ -23,6 +25,8 @@ This is an e-commerce application developed using Spring Boot and Java in micros
 # Technologies
 
 **Spring Boot**
+- Spring Cloud Gateway
+- Spring RestClient
 
 **Kafka**
 
