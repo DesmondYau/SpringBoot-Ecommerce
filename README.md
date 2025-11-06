@@ -5,6 +5,8 @@
 
 
 # Description
+This is an e-commerce application developed using Spring Boot and Java in microservices architecture
+
 
 **Customer**
 
