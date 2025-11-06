@@ -12,18 +12,18 @@ This is an e-commerce application developed using Spring Boot and Java in micros
 **📦 Product Service**
 
 **🧾 Order Service**
-- Processes order creation and order history. Perform synchronous communication with Customer and Product services using Spring RestClient to validate and fulfill orders.
-- Acts as a Kafka producer, publishing order events to a Kafka topic for asynchronous processing by downstream consumers such as the Notification Service
+- Processes order creation and order history. Perform **synchronous communication** with Customer and Product services using Spring RestClient to validate and fulfill orders.
+- Acts as a **Kafka producer**, publishing order events to a Kafka topic for asynchronous processing by downstream consumers such as the Notification Service
 
 **📣 Notification Service**
-- Listens for order-related events as a Kafka consumer, enabling asynchronous communication with the Order Service
+- Listens for order-related events as a **Kafka consumer**, enabling asynchronous communication with the Order Service
 - Upon receiving an event, it generates and sends email notifications using JavaMailSender
 
 **🚪 Gateway Service**
-- Serves as the unified entry point to the system. Routes incoming requests to appropriate services
+- Serves as the **unified entry point** to the system. Routes incoming requests to appropriate services
 
 **🧭 Discovery Service**
-- Enables dynamic service registration and lookup using Spring Cloud Netflix Eureka. Ensures services can find and communicate with each other without hardcoded URLs.
+- Enables dynamic **service registration** and lookup using Spring Cloud Netflix Eureka. Ensures services can find and communicate with each other without hardcoded URLs.
 
 **🗂️ Config Server**
 
