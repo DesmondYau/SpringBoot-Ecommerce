@@ -41,13 +41,16 @@ This is an e-commerce application developed using the **Spring Boot** in a **mic
 - 🗂️ Spring Cloud Config Server – Centralized configuration management
 - 📧 JavaMailSender – Email delivery for notifications
 
+
 🔄 Messaging & Streaming
 - 📡 Apache Kafka – Event streaming platform for asynchronous communication
   - Producer: Order Service
   - Consumer: Notification Service
 
+
 🛢️ Databases
 - 🐘 PostgreSQL – Relational database for structured data (Customer, Product, Order)
+
 
 🛠️ Build & Dependency Management
 - 📦 Maven – Project build and dependency management
