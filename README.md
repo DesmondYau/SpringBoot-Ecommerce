@@ -32,7 +32,7 @@ This is an e-commerce application developed using the **Spring Boot** in a **mic
 
 # Technologies
 
-**![Spring Boot](https://raw.githubusercontent.com/github/explore/main/topics/spring-boot/spring-boot.png)Spring Boot**
+**🚀 Spring Boot**
 - Spring Cloud Gateway
 - Spring RestClient
 
