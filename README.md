@@ -5,16 +5,19 @@
 
 
 # Description
-This is an e-commerce application developed using Spring Boot and Java in microservices architecture
+This is an e-commerce application developed using Spring Boot and Java in microservices architecture:
 
+**Customer Service**
 
-**Customer**
+**Product Service**
 
-**Product**
+**Order Service**
 
-**Order**
+**Notification Service**
 
-**Notification**
+**Discovery Service**
+
+**Config Server**
 
 
 # Technologies
