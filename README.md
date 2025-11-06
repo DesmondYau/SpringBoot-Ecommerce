@@ -5,7 +5,7 @@
 
 
 # Description
-This is an e-commerce application developed using Spring Boot and Java in microservices architecture:
+This is an e-commerce application developed using **Spring Boot Framework** in **microservices architecture**:
 
 **👤 Customer Service**
 - Manages customer creation, updates, retrieval, and deletion. Supports profile lookup and validation for downstream services.
