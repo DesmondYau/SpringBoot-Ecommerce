@@ -1,0 +1,136 @@
+services:
+  redis:
+    container_name: ms_redis
+    image: redis:8.2.4-alpine3.22
+    ports:
+      - 6379:6379
+    networks:
+      - microservices-net
+
+  postgres_customer:
+    container_name: ms_pgsql_customer
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: pgsql
+      PGDATA: /var/lib/postgresql/newdata
+    volumes:
+      - postgres_customer:/var/lib/postgresql/newdata
+      - ./docker/postgres/init_customer.sql:/docker-entrypoint-initdb.d/init_customer.sql
+    ports:
+      - 5433:5432
+    networks:
+      - microservices-net
+    restart: unless-stopped
+    
+  postgres_product:
+    container_name: ms_pgsql_product
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: pgsql
+      PGDATA: /var/lib/postgresql/newdata
+    volumes:
+      - postgres_product:/var/lib/postgresql/newdata
+      - ./docker/postgres/init_product.sql:/docker-entrypoint-initdb.d/init_product.sql
+    ports:
+      - 5432:5432
+    networks:
+      - microservices-net
+    restart: unless-stopped
+
+  postgres_order:
+    container_name: ms_pgsql_order
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: pgsql
+      PGDATA: /var/lib/postgresql/newdata
+    volumes:
+      - postgres_order:/var/lib/postgresql/newdata
+      - ./docker/postgres/init_order.sql:/docker-entrypoint-initdb.d/init_order.sql
+    ports:
+      - 5431:5432
+    networks:
+      - microservices-net
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: ms_pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - 5050:80
+    networks:
+      - microservices-net
+    restart: unless-stopped
+
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_SERVER_ID: 1
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 22181:2181
+    networks:
+      - microservices-net
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    container_name: ms_kafka
+    ports:
+      - 9092:9092
+      - 29092:29092
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://ms_kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:29092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+    networks:
+      - microservices-net
+
+  mail-dev:
+    container_name: ms_maildev
+    image: maildev/maildev
+    ports:
+      - 1080:1080
+      - 1025:1025
+
+  kafka-ui:
+    container_name: kafka-ui
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "8086:8080"
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_CLUSTERS_NAME: local
+      KAFKA_CLUSTERS_BOOTSTRAPSERVERS: ms_kafka:9092
+      DYNAMIC_CONFIG_ENABLED: 'true'
+    networks:
+      - microservices-net
+
+networks:
+  microservices-net:
+    driver: bridge
+
+volumes:
+  postgres_customer:
+  postgres_product:
+  postgres_order:
+  pgadmin:
+  mongo:
