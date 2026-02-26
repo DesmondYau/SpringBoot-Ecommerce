@@ -9,17 +9,16 @@ This project is an e‑commerce application built with **Spring Boot** and desig
 # Service Description
 
 **👤 Customer Service**
-- Manages customer creation, updates, retrieval, and deletion. Supports profile lookup and validation for downstream services
+- Manages customer creation, updates, retrieval, and deletion. Supports customer lookup and validation during purchase
   
 **📦 Product Service**
-- Manages product catalog operations, leverages **Redis caching** for fast lookups. Ensures transactional integrity (e.g. product and stock validation) during purchases and act as **Kafka producer** to publish stock changes **asynchronously**
+- Manages product catalog operations, leverages **Redis caching** for fast product lookups. Ensures transactional integrity (e.g. product and stock validation) during purchases and act as **Kafka producer** to publish stock changes **asynchronously**
 
 **📣 Stock Service**
-- Listens for stock change events as a **Kafka consumer**, enabling asynchronous communication with the Order Service
-- Upon receiving an event, it generates and sends email notifications using JavaMailSender
-
+- Manages inventory data, **publishing stock levels to Redis** for fast access and retrieval. Acts as a **Kafka consumer**, applying **event‑driven** stock synchronisation to update database quantities and enforce consistency across the system.
+  
 **🧾 Order Service**
-- Manages order creation and retrieval, using **Spring RestClient** to validate customers and products **synchronously** before persisting transactions. Calculates total amount, maintains order history, and enforces transactional integrity
+- Manages order creation and retrieval, using **Spring RestClient** to perform **synchronous communication** with Customer Service and Product Service for validation. Calculates total amount, maintains order history, and enforces transactional integrity
   
 **🚪 Gateway Service**
 - Serves as the **unified entry point** to the system. Routes incoming requests to appropriate services
