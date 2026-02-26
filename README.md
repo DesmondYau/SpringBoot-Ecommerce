@@ -9,18 +9,19 @@ This project is an e‑commerce application built with **Spring Boot** and desig
 This is an e-commerce application developed using the **Spring Boot** in a **microservices architecture**:
 
 **👤 Customer Service**
-- Manages customer creation, updates, retrieval, and deletion. Supports profile lookup and validation for downstream services.
+- Manages customer creation, updates, retrieval, and deletion. Supports profile lookup and validation for downstream services
   
 **📦 Product Service**
-- Handles product creation, lookup, and inventory updates. Validates stock and processes purchases with transactional integrity.
+- Manages product catalog operations, leverages **Redis caching** for fast lookups
+- Ensures transactional integrity (e.g. product and stock validation) during purchases and act as **Kafka producer** to publish stock changes asynchronously
 
 **🧾 Order Service**
 - Processes order creation and history. Performs **synchronous communication** with Customer and Product services using **Spring RestClient** to validate and fulfill orders
-- Acts as a **Kafka producer**, publishing order events to a Kafka topic for **asynchronous processing** by downstream consumers such as the Notification Service.
+- Acts as a **Kafka producer**, publishing order events to a Kafka topic for **asynchronous processing** by downstream consumers such as the Notification Service
 
 **📣 Stock Service**
-- Listens for order-related events as a **Kafka consumer**, enabling asynchronous communication with the Order Service.
-- Upon receiving an event, it generates and sends email notifications using JavaMailSender.
+- Listens for order-related events as a **Kafka consumer**, enabling asynchronous communication with the Order Service
+- Upon receiving an event, it generates and sends email notifications using JavaMailSender
   
 **🚪 Gateway Service**
 - Serves as the **unified entry point** to the system. Routes incoming requests to appropriate services
@@ -45,7 +46,6 @@ This is an e-commerce application developed using the **Spring Boot** in a **mic
 - 📡 Apache Kafka – Event streaming platform for asynchronous communication
   - Producer: Order Service
   - Consumer: Notification Service
-
 
 
 🛢️ Databases
