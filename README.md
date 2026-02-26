@@ -3,8 +3,7 @@
 
 
 # Overview
-This project is an e‑commerce application built with **Spring Boot** and designed using a **microservices architecture**. It demonstrates service decomposition, synchronous and asynchronous communication, centralized configuration, and service discovery. The system evolved from a basic design into an optimized architecture with **redis caching** and **kafka event streaming** to improve scalability and performance.
-
+This project is an e‑commerce application built with **Spring Boot** and a **microservices architecture**. It evolved from a baseline design into a resilient **event‑driven** system, enhanced with **Redis caching** for high‑performance lookups and **Kafka streaming** for scalable, asynchronous workflows. The design aims to handle **high‑concurrency scenarios such as flash sales**, supporting accurate inventory management, responsive performance, and dependable order processing under real‑world conditions.
 
 # Service Description
 
@@ -29,25 +28,10 @@ This project is an e‑commerce application built with **Spring Boot** and desig
 **🗂️ Config Server**
 - Centralizes configuration for all services using **Spring Cloud Config Server**.
 
+
 # Technologies
+🧱 Core Frameworks & Libraries: Spring Boot, Spring Cloud Gateway, Spring RestClient,  Spring Cloud Netflix Eureka,  Spring Cloud Config Server
+🔄 Message Streaming: Apache Kafka 
+🚀 Caching: Redis
+🛢️ Databases: PostgreSQL
 
-🧱 Core Frameworks & Libraries
-- 🚀 Spring Boot – Base framework for building microservices
-- 🚪 Spring Cloud Gateway – API gateway for routing and filtering
-- 🔗 Spring RestClient – HTTP client for synchronous inter-service communication
-- 🧭 Spring Cloud Netflix Eureka – Service discovery and registration
-- 🗂️ Spring Cloud Config Server – Centralized configuration management
-
-
-🔄 Messaging & Streaming
-- 📡 Apache Kafka – Event streaming platform for asynchronous communication
-  - Producer: Order Service
-  - Consumer: Notification Service
-
-
-🛢️ Databases
-- 🐘 PostgreSQL – Relational database for structured data (Customer, Product, Order)
-
-
-🛠️ Build & Dependency Management
-- 📦 Maven – Project build and dependency management
