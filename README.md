@@ -13,15 +13,15 @@ This is an e-commerce application developed using the **Spring Boot** in a **mic
   
 **📦 Product Service**
 - Manages product catalog operations, leverages **Redis caching** for fast lookups
-- Ensures transactional integrity (e.g. product and stock validation) during purchases and act as **Kafka producer** to publish stock changes asynchronously
-
-**🧾 Order Service**
-- Processes order creation and history. Performs **synchronous communication** with Customer and Product services using **Spring RestClient** to validate and fulfill orders
-- Acts as a **Kafka producer**, publishing order events to a Kafka topic for **asynchronous processing** by downstream consumers such as the Notification Service
+- Ensures transactional integrity (e.g. product and stock validation) during purchases and act as **Kafka producer** to publish stock changes **asynchronously**
 
 **📣 Stock Service**
-- Listens for order-related events as a **Kafka consumer**, enabling asynchronous communication with the Order Service
+- Listens for stock change events as a **Kafka consumer**, enabling asynchronous communication with the Order Service
 - Upon receiving an event, it generates and sends email notifications using JavaMailSender
+
+**🧾 Order Service**
+- Manages order creation and retrieval, using **Spring RestClient** to validate customers and products **synchronously** before persisting transactions. 
+- Calculates total amount, maintains history, and enforces transactional integrity across services
   
 **🚪 Gateway Service**
 - Serves as the **unified entry point** to the system. Routes incoming requests to appropriate services
