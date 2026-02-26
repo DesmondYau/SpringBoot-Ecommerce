@@ -30,8 +30,8 @@ This project is an e‑commerce application built with **Spring Boot** and a **m
 
 
 # Technologies
-🧱 **Core Frameworks & Libraries**: Spring Boot, Spring Cloud Gateway, Spring RestClient,  Spring Cloud Netflix Eureka,  Spring Cloud Config Server <br>
-🔄 **Message Streaming**: Apache Kafka <br>
-🚀 **Caching**: Redis <br>
-🛢️ **Databases**: PostgreSQL <br>
+🧱 **Core Frameworks & Libraries:** Spring Boot, Spring Cloud Gateway, Spring RestClient,  Spring Cloud Netflix Eureka,  Spring Cloud Config Server <br>
+🔄 **Message Streaming:** Apache Kafka <br>
+🚀 **Caching:** Redis <br>
+🛢️ **Databases:** PostgreSQL <br>
 
