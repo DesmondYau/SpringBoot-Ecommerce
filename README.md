@@ -2,10 +2,10 @@
 <img width="749" height="491" alt="JavaEcommerceOptimize drawio" src="https://github.com/user-attachments/assets/2fd73a51-fc93-4979-b656-9da167c720f8" />
 
 
+# Overview
+This project is an e‑commerce application built with **Spring Boot** and designed using a **microservices architecture**. It demonstrates service decomposition, synchronous and asynchronous communication, centralized configuration, and service discovery. The system evolved from a basic design into an optimized architecture with **redis caching** and **kafka event streaming** to improve scalability and performance.
 
-
-
-# Description
+# Service Description
 This is an e-commerce application developed using the **Spring Boot** in a **microservices architecture**:
 
 **👤 Customer Service**
@@ -18,7 +18,7 @@ This is an e-commerce application developed using the **Spring Boot** in a **mic
 - Processes order creation and history. Performs **synchronous communication** with Customer and Product services using **Spring RestClient** to validate and fulfill orders
 - Acts as a **Kafka producer**, publishing order events to a Kafka topic for **asynchronous processing** by downstream consumers such as the Notification Service.
 
-**📣 Notification Service**
+**📣 Stock Service**
 - Listens for order-related events as a **Kafka consumer**, enabling asynchronous communication with the Order Service.
 - Upon receiving an event, it generates and sends email notifications using JavaMailSender.
   
@@ -39,13 +39,13 @@ This is an e-commerce application developed using the **Spring Boot** in a **mic
 - 🔗 Spring RestClient – HTTP client for synchronous inter-service communication
 - 🧭 Spring Cloud Netflix Eureka – Service discovery and registration
 - 🗂️ Spring Cloud Config Server – Centralized configuration management
-- 📧 JavaMailSender – Email delivery for notifications
 
 
 🔄 Messaging & Streaming
 - 📡 Apache Kafka – Event streaming platform for asynchronous communication
   - Producer: Order Service
   - Consumer: Notification Service
+
 
 
 🛢️ Databases
