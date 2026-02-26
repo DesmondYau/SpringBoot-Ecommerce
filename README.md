@@ -1,5 +1,5 @@
 # SpringBoot-Ecommerce
-<img width="749" height="491" alt="JavaEcommerce" src="https://github.com/user-attachments/assets/e7d9160c-2fa3-4a63-9876-a73ef1fcda56" />
+<img width="749" height="491" alt="JavaEcommerceOptimize drawio" src="https://github.com/user-attachments/assets/2fd73a51-fc93-4979-b656-9da167c720f8" />
 
 
 
