@@ -5,6 +5,14 @@
 # Overview
 This project is an e‑commerce application built with **Spring Boot** and a **microservices architecture**. It evolved from a baseline design into a resilient **event‑driven** system, enhanced with **Redis caching** for high‑performance lookups and **Kafka streaming** for scalable, asynchronous workflows. The design aims to handle **high‑concurrency scenarios such as flash sales**, supporting accurate inventory management, responsive performance, and dependable order processing under real‑world conditions.
 
+
+# Optimization
+
+🔄 **Event Streaming: Apache Kafka** <br>
+
+🚀 **Caching: Redis** <br>
+
+
 # Service Description
 
 **👤 Customer Service**
