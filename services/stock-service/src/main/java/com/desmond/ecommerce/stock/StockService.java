@@ -5,6 +5,7 @@ import com.desmond.ecommerce.kafkaConsumer.ProductPurchaseRequest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -34,10 +35,12 @@ public class StockService {
         return stockRepository.findAll().stream().map(stockMapper::toStockRespsonse).toList();
     }
 
+    @Transactional
     @KafkaListener(topics = "stock-topic")
-    public StockResponse changeStock(ProductPurchaseRequest productPurchaseRequest) {
-        Stock stock = stockRepository.findById(productPurchaseRequest.id()).get();
-        stock.setQuantity(stock.getQuantity() - productPurchaseRequest.quantity());
-        return stockMapper.toStockRespsonse(stockRepository.save(stock));
+    public void changeStock(ProductPurchaseRequest productPurchaseRequest) {
+        int updated = stockRepository.decrementStock(productPurchaseRequest.id(), productPurchaseRequest.quantity());
+        if (updated == 0) {
+            throw new IllegalStateException("Stock update failed");
+        }
     }
 }
