@@ -1,26 +1,37 @@
 # SpringBoot-Ecommerce
-<img width="749" height="491" alt="JavaEcommerce" src="https://github.com/user-attachments/assets/e7d9160c-2fa3-4a63-9876-a73ef1fcda56" />
+<img width="749" height="491" alt="JavaEcommerceOptimize drawio" src="https://github.com/user-attachments/assets/665df29c-8f7b-4075-80d3-9e8a0c7c473b" />
+
+<br>
+<br>
+
+<img width="789" height="481" alt="JavaEcommerceBaseline drawio" src="https://github.com/user-attachments/assets/1230baf8-e81d-49a2-9e28-b5d034924679" />
 
 
+# Overview
+This project is an e‑commerce application built with **Spring Boot** and a **microservices architecture**. It evolved from a baseline design into a resilient **event‑driven** system, enhanced with **Redis caching** for high‑performance lookups and **Kafka streaming** for scalable, asynchronous workflows. <br>
+The design aims to handle **high‑concurrency scenarios such as flash sales**, supporting accurate inventory management, responsive performance, and dependable order processing under real‑world conditions.
 
 
+# Optimization
 
-# Description
-This is an e-commerce application developed using the **Spring Boot** in a **microservices architecture**:
+🔄 **Event Streaming: Apache Kafka** <br>
+
+🚀 **Caching: Redis** <br>
+
+
+# Service Description
 
 **👤 Customer Service**
-- Manages customer creation, updates, retrieval, and deletion. Supports profile lookup and validation for downstream services.
+- Manages customer creation, updates, retrieval, and deletion. Supports customer lookup and validation during purchase
   
 **📦 Product Service**
-- Handles product creation, lookup, and inventory updates. Validates stock and processes purchases with transactional integrity.
+- Manages product catalog operations, leverages **Redis caching** for fast product lookups. Ensures transactional integrity (e.g. product and stock validation) during purchases and act as **Kafka producer** to publish stock changes **asynchronously**
 
+**📣 Stock Service**
+- Manages inventory data, **publishing stock levels to Redis** for fast access and retrieval. Acts as a **Kafka consumer**, applying **event‑driven** stock synchronisation to update database quantities and enforce consistency across the system.
+  
 **🧾 Order Service**
-- Processes order creation and history. Performs **synchronous communication** with Customer and Product services using **Spring RestClient** to validate and fulfill orders
-- Acts as a **Kafka producer**, publishing order events to a Kafka topic for **asynchronous processing** by downstream consumers such as the Notification Service.
-
-**📣 Notification Service**
-- Listens for order-related events as a **Kafka consumer**, enabling asynchronous communication with the Order Service.
-- Upon receiving an event, it generates and sends email notifications using JavaMailSender.
+- Manages order creation and retrieval, using **Spring RestClient** to perform **synchronous communication** with Customer Service and Product Service for validation. Calculates total amount, maintains order history, and enforces transactional integrity
   
 **🚪 Gateway Service**
 - Serves as the **unified entry point** to the system. Routes incoming requests to appropriate services
@@ -31,26 +42,10 @@ This is an e-commerce application developed using the **Spring Boot** in a **mic
 **🗂️ Config Server**
 - Centralizes configuration for all services using **Spring Cloud Config Server**.
 
+
 # Technologies
+🧱 **Core Frameworks & Libraries:** Spring Boot, Spring Cloud Gateway, Spring RestClient,  Spring Cloud Netflix Eureka,  Spring Cloud Config Server <br>
+🔄 **Message Streaming:** Apache Kafka <br>
+🚀 **Caching:** Redis <br>
+🛢️ **Databases:** PostgreSQL <br>
 
-🧱 Core Frameworks & Libraries
-- 🚀 Spring Boot – Base framework for building microservices
-- 🚪 Spring Cloud Gateway – API gateway for routing and filtering
-- 🔗 Spring RestClient – HTTP client for synchronous inter-service communication
-- 🧭 Spring Cloud Netflix Eureka – Service discovery and registration
-- 🗂️ Spring Cloud Config Server – Centralized configuration management
-- 📧 JavaMailSender – Email delivery for notifications
-
-
-🔄 Messaging & Streaming
-- 📡 Apache Kafka – Event streaming platform for asynchronous communication
-  - Producer: Order Service
-  - Consumer: Notification Service
-
-
-🛢️ Databases
-- 🐘 PostgreSQL – Relational database for structured data (Customer, Product, Order)
-
-
-🛠️ Build & Dependency Management
-- 📦 Maven – Project build and dependency management
