@@ -12,7 +12,6 @@ This project is an e‑commerce application built with **Spring Boot** and a **m
 The design aims to handle **high‑concurrency scenarios such as flash sales**, supporting accurate inventory management, responsive performance, and dependable order processing under real‑world conditions.
 
 <br>
-<br>
 
 # Optimization
 
@@ -25,7 +24,6 @@ The design aims to handle **high‑concurrency scenarios such as flash sales**, 
 - **Caching product details and stock quantities**, reducing the number of database queries, lowering latency and offloading the database during high traffic
 - Supports **atomic increments and decrements of product stock**, ensuring concurrency safety when multiple users buy the same product at once
 
-<br>
 <br>
 
 # Performance Test in Jmeter
@@ -63,7 +61,6 @@ By integrating **Redis** for in‑memory caching, and **Kafka** for asynchronous
 These results highlight how caching and event streaming can reduce latency and increase throughput in an e‑commerce application. The improvements illustrate the impact of architectural choices on scalability and responsiveness.
 
 <br>
-<br>
 
 # Service Description
 
@@ -88,6 +85,7 @@ These results highlight how caching and event streaming can reduce latency and i
 **🗂️ Config Server**
 - Centralizes configuration for all services using **Spring Cloud Config Server**.
 
+<br>
 
 # Technologies
 🧱 **Core Frameworks & Libraries:** Spring Boot, Spring Cloud Gateway, Spring RestClient,  Spring Cloud Netflix Eureka,  Spring Cloud Config Server <br>
