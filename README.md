@@ -14,12 +14,50 @@ The design aims to handle **high‑concurrency scenarios such as flash sales**, 
 
 # Optimization
 
-🔄 **Event Streaming: Apache Kafka** <br>
+🔄 **Message Streaming: Apache Kafka** <br>
+- **Product Service publishes** stock decrement events, and **Stock Service consumes** events to update the database, keeping Redis and the database aligned.
+- Supports **asynchronous event processing**, product purchase flows do not wait for database updates; stock changes are published to Kafka and processed later, reducing latency for customers
 
 🚀 **Caching: Redis** <br>
 - Act as an in-memory data structure store for caching
 - **Caching product details and stock quantities**, reducing the number of database queries, lowering latency and offloading the database during high traffic
 - Supports **atomic increments and decrements of product stock**, ensuring concurrency safety when multiple users buy the same product at once
+
+# Performance Test in Jmeter
+We conducted load testing with **10,000 requests** (1000 threads with 10 loops) using Apache JMeter to evaluate system performance before and after optimization with **Redis caching** and **Kafka event streaming**.
+
+### Product Read Request
+| Metric                    | Baseline (Before Optimization)| Optimized (Redis + Kafka) |
+|---------------------------|-------------------------------|---------------------------|
+| **Average Response Time** | 272 ms                        | 32 ms                     |
+| **Median Response Time**  | 199 ms                        | 29 ms                     |
+| **90th Percentile**       | 652 ms                        | 54 ms                     |
+| **Throughput**            | 789 requests/sec              | 991 requests/sec          |
+| **Error Rate**            | 0%                            | 0%                        |
+
+**Improvement:** Response time reduced from **272 ms → 32 ms** (≈8.5x faster) and throughput increased from **789/sec → 991/sec** (≈25% higher)
+
+
+### Order Request
+| Metric                    | Baseline (Before Optimization) | Optimized (Redis + Kafka)|
+|---------------------------|--------------------------------|--------------------------|
+| **Average Response Time** | 8269 ms                        | 5533 ms                  |
+| **Median Response Time**  | 8704 ms                        | 5766 ms                  |
+| **90th Percentile**       | 10498 ms                       | 7475 ms                  |
+| **Throughput**            | 104 requests/sec               | 146 requests/sec         |
+| **Error Rate**            | 0%                             | 0%                       |
+
+**Improvement:** Response time reduced from **8269 ms → 5533 ms** (≈33% faster) and throughput increased from **104/sec → 146/sec** (≈40% higher)
+
+### 🚀 Summary
+By integrating **Redis** for in‑memory caching and atomic stock operations, and **Kafka** for asynchronous event streaming, the system demonstrated measurable performance gains under load testing:
+
+- **Product reads** improved from hundreds of milliseconds to tens of milliseconds, with throughput rising from ~789/sec to ~991/sec.  
+- **Order requests** improved from several seconds to around 5 seconds, with throughput rising from ~104/sec to ~146/sec.  
+- **Error rate** remained at 0% across all tests, confirming stability under concurrent load.  
+
+These results highlight how caching and event streaming can reduce latency and increase throughput in an e‑commerce application. While this is a demo setup, the improvements illustrate the impact of architectural choices on scalability and responsiveness.
+
 
 
 # Service Description
