@@ -17,6 +17,9 @@ The design aims to handle **high‑concurrency scenarios such as flash sales**, 
 🔄 **Event Streaming: Apache Kafka** <br>
 
 🚀 **Caching: Redis** <br>
+- Act as an in-memory key-value store for caching
+- Supports atomic increments and decrements of product stock, ensuring concurrency safety when multiple users buy the same product at once
+- Caching product details and stock quantities in Redis to reduce the number of database queries, lowering latency and offloading the database during high traffic
 
 
 # Service Description
