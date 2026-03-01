@@ -11,6 +11,8 @@
 This project is an e‑commerce application built with **Spring Boot** and a **microservices architecture**. It evolved from a baseline design into a resilient **event‑driven** system, enhanced with **Redis caching** for high‑performance lookups and **Kafka streaming** for scalable, asynchronous workflows. <br>
 The design aims to handle **high‑concurrency scenarios such as flash sales**, supporting accurate inventory management, responsive performance, and dependable order processing under real‑world conditions.
 
+<br>
+<br>
 
 # Optimization
 
@@ -22,6 +24,9 @@ The design aims to handle **high‑concurrency scenarios such as flash sales**, 
 - Act as an in-memory data structure store for caching
 - **Caching product details and stock quantities**, reducing the number of database queries, lowering latency and offloading the database during high traffic
 - Supports **atomic increments and decrements of product stock**, ensuring concurrency safety when multiple users buy the same product at once
+
+<br>
+<br>
 
 # Performance Test in Jmeter
 We conducted load testing with **10,000 requests** (1000 threads with 10 loops) using Apache JMeter to evaluate system performance before and after optimization with **Redis caching** and **Kafka event streaming**.
@@ -50,15 +55,15 @@ We conducted load testing with **10,000 requests** (1000 threads with 10 loops) 
 **Improvement:** Response time reduced from **8269 ms → 5533 ms** (≈33% faster) and throughput increased from **104/sec → 146/sec** (≈40% higher)
 
 ### 🚀 Summary
-By integrating **Redis** for in‑memory caching and atomic stock operations, and **Kafka** for asynchronous event streaming, the system demonstrated measurable performance gains under load testing:
+By integrating **Redis** for in‑memory caching, and **Kafka** for asynchronous event streaming, the system demonstrated measurable performance gains under load testing:
 
 - **Product reads** improved from hundreds of milliseconds to tens of milliseconds, with throughput rising from ~789/sec to ~991/sec.  
 - **Order requests** improved from several seconds to around 5 seconds, with throughput rising from ~104/sec to ~146/sec.  
-- **Error rate** remained at 0% across all tests, confirming stability under concurrent load.  
 
-These results highlight how caching and event streaming can reduce latency and increase throughput in an e‑commerce application. While this is a demo setup, the improvements illustrate the impact of architectural choices on scalability and responsiveness.
+These results highlight how caching and event streaming can reduce latency and increase throughput in an e‑commerce application. The improvements illustrate the impact of architectural choices on scalability and responsiveness.
 
-
+<br>
+<br>
 
 # Service Description
 
